@@ -20,26 +20,38 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
 axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
-    .then( function (response) {
+    .then( function (response) 
+    {
         console.log(response);
-        //console.log(response.data.articles.javascript[1].headline);
-        
-        const articleSubjects = Object.keys(response.data.articles);
-        console.log(articleSubjects[0]);
+        // Javascript
+         for(let i = 0; i < response.data.articles.javascript.length; i++)
+         {
+            createCard(response.data.articles.javascript[i]);
+         }
+        //bootstrap
+         for(let i = 0; i < response.data.articles.bootstrap.length; i++)
+         {
+            createCard(response.data.articles.bootstrap[i]);
+         }
+        //technology
+         for(let i = 0; i < response.data.articles.technology.length; i++)
+         {
+            createCard(response.data.articles.technology[i]);
+         }
+         //jquery
+         for(let i = 0; i < response.data.articles.jquery.length; i++)
+         {
+            createCard(response.data.articles.jquery[i]);
+         }
+         //node 
+         for(let i = 0; i < response.data.articles.node.length; i++)
+         {
+            createCard(response.data.articles.node[i]);
+         }
 
-        console.log(response.data.articles.javascript[1].headline)
-       // console.log(response.data.articles.articleSubjects[0]);
-        console.log(response.data.articles.javascript[1])
+         //I know I could use the following but couldn't implement it
+         //console.log(Object.keys(response.data.articles));
 
-
-        // articleSubjects.forEach( element => {
-        //     console.log(response.data.articles.element);
-        // })
-        
-        // response.data.articles.forEach(element => {
-        //     //createCard(element);
-        //     console.log(element);
-        // });
     })
     .catch( function (error) {
         console.log("The data was not returned!", error);
@@ -66,6 +78,9 @@ function createCard(element)
     author.appendChild(imageContainer);
     imageContainer.appendChild(image);
     author.appendChild(by);
+
+    const cardsContainer = document.querySelector('.cards-container');
+    cardsContainer.appendChild(card);
 
   //  console.log(card);
     return card;

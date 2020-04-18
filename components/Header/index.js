@@ -28,6 +28,8 @@ function Header()
     header.appendChild(title);
     header.appendChild(temp);
 
+    const headerContainer = document.querySelector('.header-container');
+    headerContainer.appendChild(header);
     //console.log(header);    
     return header;
 }
